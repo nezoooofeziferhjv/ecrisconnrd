@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saisie de Texte</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0e9f5, #b8cddc);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.4s ease;
+            z-index: 10;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h2 {
+            color: #334e68;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0 20px 0;
+            box-sizing: border-box;
+            border: 2px solid #cbd5e1;
+            border-radius: 12px;
+            background-color: #f8fafc;
+            color: #334e68;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #627d98;
+        }
+
+        button {
+            background-color: #486581;
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #334e68;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #result-display {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #102a43;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 5;
+            width: 80%;
+            word-wrap: break-word;
+        }
+
+        #result-display.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+
+        .container.hide {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container" id="input-container">
+        <h2>Encoder du texte</h2>
+        <input type="text" id="user-input" placeholder="Tapez quelque chose ici...">
+        <br>
+        <button onclick="afficherTexte()">Envoyer</button>
+    </div>
+
+
+    <div id="result-display"></div>
+
+    <script>
+        function afficherTexte() {
+
+            const inputField = document.getElementById('user-input');
+            const container = document.getElementById('input-container');
+            const resultDisplay = document.getElementById('result-display');
+            
+
+            if (inputField.value.trim() !== "") {
+
+                resultDisplay.textContent = inputField.value;
+                
+                container.classList.add('hide');
+                
+                setTimeout(() => {
+                    resultDisplay.classList.add('show');
+                }, 200);
+            } else {
+                alert("Met un text fdp");
+            }
+        }
+    </script>
+
+</body>
+</html>
